@@ -1,0 +1,57 @@
+[System]
+Name='fis2'
+Type='mamdani'
+Version=2.0
+NumInputs=2
+NumOutputs=1
+NumRules=15
+AndMethod='min'
+OrMethod='max'
+ImpMethod='min'
+AggMethod='max'
+DefuzzMethod='centroid'
+
+[Input1]
+Name='Temperature'
+Range=[0 40]
+NumMFs=5
+MF1='VeryCold':'trimf',[-10 0 10]
+MF2='Cold':'trimf',[0 10 20]
+MF3='Normal':'trimf',[10 20 30]
+MF4='Warm':'trimf',[20 30 40]
+MF5='VeryWarm':'trimf',[30 40 50]
+
+[Input2]
+Name='TempChange'
+Range=[-10 10]
+NumMFs=3
+MF1='Negative':'trimf',[-20 -10 0]
+MF2='Zero':'trimf',[-10 0 10]
+MF3='Positive':'trimf',[0 10 20]
+
+[Output1]
+Name='Regulator'
+Range=[-90 90]
+NumMFs=5
+MF1='LargeLeft':'trimf',[-135 -90 -45]
+MF2='SmallLeft':'trimf',[-90 -45 0]
+MF3='Off':'trimf',[-45 0 45]
+MF4='SmallRight':'trimf',[0 45 90]
+MF5='LargeRight':'trimf',[45 90 135]
+
+[Rules]
+5 3, 1 (1) : 1
+5 1, 2 (1) : 1
+4 3, 1 (1) : 1
+4 1, 3 (1) : 1
+1 1, 5 (1) : 1
+1 3, 4 (1) : 1
+2 1, 5 (1) : 1
+2 3, 3 (1) : 1
+5 2, 1 (1) : 1
+4 2, 2 (1) : 1
+1 2, 5 (1) : 1
+2 2, 4 (1) : 1
+3 3, 2 (1) : 1
+3 1, 4 (1) : 1
+3 2, 3 (1) : 1
